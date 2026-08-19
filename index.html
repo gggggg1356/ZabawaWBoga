@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Zabawa w Boga — Witold Kotula. Oficjalna strona książki, informacje o powieści, autorze i audiobooku.">
+    <meta name="theme-color" content="#0b0b0d">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zabawa w Boga — Witold Kotula">
+    <meta property="og:description" content="Poznaj powieść Zabawa w Boga, jej autora oraz audiobook.">
+    <meta property="og:image" content="hero_bilde.png">
+    <meta property="og:locale" content="pl_PL">
+
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='none' stroke='%23b08d57' stroke-width='1.2'/%3E%3Ccircle cx='20' cy='20' r='7' fill='none' stroke='%23ececea' stroke-width='1.2'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(45px);
+            transition:
+                opacity 0.9s cubic-bezier(.22, 1, .36, 1),
+                transform 0.9s cubic-bezier(.22, 1, .36, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+
+        :root {
+            --bg: #33321e;
+            --bg-alt: #2f2f53;
+            --bg-alt-2: #171515;
+            --text: #ffffff;
+            --text-dim: #e0e0e0;
+            --hairline: rgba(255, 255, 255, 0.09);
+            --gold: #cddb4c;
+            --gold-soft: rgba(176, 141, 87, 0.35);
+            --blood: #8a2331;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', Arial, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.55);
+        }
+
+        ::selection {
+            background: var(--gold-soft);
+            color: #fff;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ============ HEADER / NAV ============ */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 5vw;
+            background: rgba(10, 10, 12, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--hairline);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .brand:hover {
+            opacity: 0.82;
+        }
+
+        .brand-mark {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(14px, 2.4vw, 34px);
+        }
+
+        .nav-btn {
+            position: relative;
+            background: none;
+            border: none;
+            padding: 6px 2px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+            transition: color 0.3s ease;
+        }
+
+        .nav-btn::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .nav-btn:hover {
+            color: var(--text);
+        }
+
+        .nav-btn:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-btn.active {
+            color: var(--gold);
+        }
+
+        .nav-btn.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--hairline);
+            border-radius: 6px;
+            color: var(--text);
+            width: 38px;
+            height: 34px;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(.22, 1, .36, 1),
+                border-color 0.3s ease,
+                color 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            border-color: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .nav-toggle.open {
+            transform: rotate(90deg);
+            color: var(--gold);
+            border-color: var(--gold-soft);
+        }
+
+        /* Invisible spacer that grows/shrinks in normal document flow so
+           opening the mobile dropdown smoothly pushes page content down
+           instead of covering it. Height is set from JS. */
+        #navSpacer {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.5s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @media (max-width: 720px) {
+            nav {
+                position: fixed;
+                top: 66px;
+                right: 0;
+                left: 0;
+                background: rgba(10, 10, 12, 0.96);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 10px 5vw 20px;
+                border-bottom: 1px solid var(--hairline);
+                transform: translateY(-14px);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition:
+                    transform 0.5s cubic-bezier(.22, 1, .36, 1),
+                    opacity 0.4s ease,
+                    visibility 0s linear 0.5s;
+            }
+
+            nav.open {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transition:
+                    transform 0.5s cubic-bezier(.22, 1, .36, 1),
+                    opacity 0.4s ease,
+                    visibility 0s linear 0s;
+            }
+
+            .nav-btn {
+                width: 100%;
+                padding: 12px 0;
+                transition: color 0.3s ease, padding-left 0.3s cubic-bezier(.22, 1, .36, 1);
+            }
+
+            .nav-btn:hover,
+            .nav-btn:active {
+                padding-left: 6px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        /* ============ RESPONSIVE / MOBILE HARDENING ============ */
+
+        html {
+            min-height: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        #hero {
+            height: 100vh;
+            height: 100svh;
+            min-height: 560px;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        #hero>canvas {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+            z-index: 2;
+        }
+
+        #introText {
+            z-index: 3;
+        }
+
+        @media (max-width: 720px) {
+            header {
+                padding: 12px 5vw;
+                min-height: 60px;
+            }
+
+            .brand {
+                gap: 9px;
+                min-width: 0;
+            }
+
+            .brand-mark {
+                width: 27px;
+                height: 27px;
+            }
+
+            .brand-name {
+                font-size: clamp(16px, 4.8vw, 19px);
+                letter-spacing: 0.03em;
+            }
+
+            .nav-toggle {
+                width: 40px;
+                height: 36px;
+                padding: 0;
+                font-size: 19px;
+                line-height: 1;
+            }
+
+            nav {
+                top: 60px;
+                max-height: calc(100svh - 60px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            #hero {
+                min-height: 0;
+                height: 100svh;
+            }
+
+            #introText {
+                top: 29svh;
+                left: 5vw;
+                right: 5vw;
+                width: auto;
+            }
+
+            #introText .title {
+                font-size: clamp(30px, 9.5vw, 42px);
+                line-height: 0.98;
+                letter-spacing: 0.015em;
+                white-space: nowrap;
+            }
+
+            #introText .subtitle {
+                font-size: clamp(11px, 3.2vw, 14px);
+                margin-top: 8px;
+                letter-spacing: 0.08em;
+            }
+
+            #titleLine {
+                height: 2px;
+                margin-top: 14px;
+                max-width: 88vw;
+            }
+
+            #content {
+                padding: 0 5vw 70px;
+                font-size: 17px;
+            }
+
+            .subpage {
+                padding: 105px 5vw 60px;
+            }
+
+            .subpage h1 {
+                font-size: clamp(34px, 10vw, 48px);
+            }
+
+            .lede {
+                padding-left: 17px;
+                margin: 30px 0;
+                font-size: clamp(21px, 6vw, 28px);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+
+            .cta-banner {
+                padding: 24px 20px;
+                margin-top: 38px;
+            }
+
+            .btn {
+                min-height: 46px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .cta-banner .btn {
+                width: 100%;
+            }
+
+            table.meta {
+                font-size: 14px;
+            }
+
+            table.meta td:first-child {
+                width: 36%;
+                padding-right: 12px;
+            }
+
+            .sales-hero {
+                gap: 30px;
+            }
+
+            .sample-player {
+                padding: 18px;
+            }
+
+            audio {
+                min-height: 44px;
+            }
+
+            footer.site-footer {
+                padding-bottom: calc(50px + env(safe-area-inset-bottom));
+            }
+        }
+
+        @media (max-width: 380px) {
+            #introText {
+                top: 27svh;
+            }
+
+            #introText .title {
+                font-size: 29px;
+            }
+
+            .brand-name {
+                font-size: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: none;
+            }
+
+            .loader-shine {
+                animation: none;
+            }
+
+            #navSpacer,
+            nav,
+            .nav-toggle,
+            .btn,
+            .card,
+            details.faq p {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* ============ PAGE SWITCHER ============ */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .subpage {
+            padding: 130px 6vw 80px;
+            max-width: 980px;
+            margin: 0 auto;
+            animation: pageFadeIn 0.6s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .subpage {
+                animation: none;
+            }
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0 0 14px;
+        }
+
+        .subpage h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(34px, 5vw, 56px);
+            margin: 0 0 30px;
+            line-height: 1.05;
+        }
+
+        .hairline {
+            border: none;
+            border-top: 1px solid var(--hairline);
+            margin: 48px 0;
+        }
+
+        /* ============ HERO (ORIGINAL — untouched visuals kept) ============ */
+
+        #hero {
+            width: 100vw;
+            height: 100vh;
+            background-image: url("hero_bilde.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        #content {
+            padding: 0 6vw 100px;
+            max-width: 980px;
+            margin: auto;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        #introText {
+            position: absolute;
+            top: 35vh;
+            left: 6vw;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+            text-shadow:
+                0 1px 2px rgba(0, 0, 0, 0.35),
+                /* svart shadow */
+                0 0 6px rgba(255, 255, 255, 0.6);
+            /* hvit glow */
+        }
+
+        #introText .title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0;
+            white-space: nowrap;
+            display: block;
+        }
+
+        #introText .subtitle {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: 10px;
+            white-space: nowrap;
+            display: block;
+        }
+
+        #titleLine {
+            width: 0%;
+            height: 3px;
+            background: white;
+            margin-top: 20px;
+            transition: width 0.15s linear;
+            opacity: 1;
+        }
+
+        /* ============ SHARED CONTENT MODULES ============ */
+
+        .lede {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(22px, 2.6vw, 30px);
+            line-height: 1.5;
+            color: var(--text);
+            border-left: 2px solid var(--gold);
+            padding-left: 24px;
+            margin: 40px 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: var(--bg-alt);
+            border: 1px solid var(--hairline);
+            border-radius: 10px;
+            padding: 26px 22px;
+            transition:
+                transform 0.5s cubic-bezier(.22, 1, .36, 1),
+                border-color 0.4s ease,
+                box-shadow 0.5s cubic-bezier(.22, 1, .36, 1),
+                background 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-soft);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .card .glyph {
+            width: 26px;
+            height: 26px;
+            margin-bottom: 14px;
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 21px;
+            margin: 0 0 8px;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .cta-banner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: linear-gradient(135deg, var(--bg-alt-2), var(--bg-alt));
+            border: 1px solid var(--gold-soft);
+            border-radius: 14px;
+            padding: 30px 34px;
+            margin: 50px 0 10px;
+        }
+
+        .cta-banner h3 {
+            font-family: var(--font-display);
+            font-size: 26px;
+            margin: 0 0 6px;
+        }
+
+        .cta-banner p {
+            margin: 0;
+            color: var(--text-dim);
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 26px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--text);
+            transition:
+                background 0.4s cubic-bezier(.22, 1, .36, 1),
+                color 0.4s ease,
+                transform 0.4s cubic-bezier(.22, 1, .36, 1),
+                box-shadow 0.4s cubic-bezier(.22, 1, .36, 1),
+                border-color 0.4s ease;
+            white-space: nowrap;
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: #0b0b0d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(205, 219, 76, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            transition-duration: 0.15s;
+        }
+
+        .btn-solid {
+            background: var(--gold);
+            color: #0b0b0d;
+        }
+
+        .btn-solid:hover {
+            background: #56f904;
+        }
+
+        /* book cover / portrait placeholders */
+        .plate {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 10px;
+            border: 1px solid var(--hairline);
+            background:
+                radial-gradient(circle at 30% 20%, rgba(176, 141, 87, 0.25), transparent 55%),
+                linear-gradient(160deg, #1a1a1f, #0c0c0e 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plate .plate-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .plate.portrait {
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 46px;
+            align-items: start;
+        }
+
+        @media (max-width: 700px) {
+            .split {
+                grid-template-columns: 1fr;
+            }
+
+            .split .plate {
+                max-width: 240px;
+                margin: 0 auto;
+            }
+        }
+
+        table.meta {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            margin: 26px 0;
+        }
+
+        table.meta td {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--hairline);
+        }
+
+        table.meta td:first-child {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            width: 40%;
+        }
+
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-left: 1px solid var(--hairline);
+        }
+
+        .timeline li {
+            position: relative;
+            padding: 4px 0 30px 30px;
+        }
+
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .timeline .year {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .timeline h4 {
+            margin: 0 0 6px;
+            font-family: var(--font-display);
+            font-size: 20px;
+        }
+
+        .timeline p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 15px;
+        }
+
+        blockquote.review {
+            margin: 0;
+            padding: 20px 0;
+            border-top: 1px solid var(--hairline);
+        }
+
+        blockquote.review p {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 18px;
+            margin: 0 0 8px;
+        }
+
+        blockquote.review cite {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            font-style: normal;
+        }
+
+        /* ============ AUDIOBOOK / SALES PAGE ============ */
+
+        .sales-hero {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        @media (max-width: 700px) {
+            .sales-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .sales-hero .plate {
+                max-width: 260px;
+                margin: 0 auto;
+            }
+        }
+
+        .price-tag {
+            font-family: var(--font-mono);
+            font-size: 34px;
+            color: var(--gold);
+            margin: 18px 0 4px;
+        }
+
+        .price-note {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin: 0 0 20px;
+        }
+
+        .sample-player {
+            background: var(--bg-alt);
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 26px 0;
+        }
+
+        .sample-player .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        .include-list {
+            list-style: none;
+            margin: 22px 0;
+            padding: 0;
+        }
+
+        .include-list li {
+            padding: 8px 0 8px 26px;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        .include-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        details.faq {
+            border-bottom: 1px solid var(--hairline);
+            padding: 16px 0;
+            transition: border-color 0.4s ease;
+        }
+
+        details.faq summary {
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 19px;
+            list-style: none;
+            transition: color 0.3s ease;
+        }
+
+        details.faq summary:hover {
+            color: var(--gold);
+        }
+
+        details.faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.faq summary::after {
+            content: "+";
+            color: var(--gold);
+            font-family: var(--font-mono);
+            display: inline-block;
+            transition: transform 0.35s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        details.faq[open] summary::after {
+            content: "–";
+            transform: rotate(180deg);
+        }
+
+        details.faq p {
+            color: var(--text-dim);
+            margin: 12px 0 0;
+            line-height: 1.6;
+            animation: fadeInFaq 0.45s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes fadeInFaq {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer.site-footer {
+            text-align: center;
+            padding: 40px 6vw 60px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            border-top: 1px solid var(--hairline);
+        }
+
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            background: #0b0b0d;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 1;
+            transition: opacity 0.5s cubic-bezier(.22, 1, .36, 1);
+            overflow: hidden;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .loader:not(.hidden) {
+            visibility: visible;
+        }
+
+        .loader-skeleton {
+            width: min(700px, 85vw);
+        }
+
+        .skel {
+            position: relative;
+            overflow: hidden;
+
+            background: #18181d;
+
+            border-radius: 8px;
+
+            margin-bottom: 18px;
+        }
+
+        .title {
+            width: 45%;
+            height: 42px;
+        }
+
+        .big {
+            height: 220px;
+        }
+
+        .line {
+            height: 16px;
+        }
+
+        .short {
+            width: 65%;
+        }
+
+        .loader-shine {
+            position: absolute;
+            inset: -100%;
+
+            background:
+                linear-gradient(120deg,
+                    transparent 40%,
+                    rgba(255, 255, 255, .08) 50%,
+                    transparent 60%);
+
+            animation: loaderSweep 1.25s linear infinite;
+        }
+
+        @keyframes loaderSweep {
+
+            from {
+                transform: translateX(-35%);
+            }
+
+            to {
+                transform: translateX(35%);
+            }
+
+        }
+
+
+        .cover {
+            width: 130%;
+            height: 100%;
+            object-fit: cover;
+            /* fyller hele boksen perfekt */
+            display: block;
+
+        }
+
+        .plate.portrait {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .plate.portrait img {
+            width: 100%;              /* stabil bredde */
+            height: auto;             /* behold proporsjoner */
+            object-fit: cover;        /* fyll containeren */
+            object-position: center;  /* ikke flytt bildet ned */
+            display: block;
+            position: relative;
+            top: 50px;
+        }
+
+
+        .plate {
+            width: 100%;
+            height: auto;
+            overflow: visible;   /* ingen cropping */
+            position: relative;
+            margin-left: 0;
+            border: 1px solid;
+            border-radius: 3%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.9); /* hvit glow */
+;
+            
+            
+        }
+
+        .plate img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* viser hele bildet */
+            display: block;
+            border: 1px solid;
+            border-radius: 3%;
+        }
+
+
+
+
+
+        .author-bio {
+            max-width: 750px;
+            margin: 30px auto;
+            font-size: 1.05rem;
+            /* større tekst */
+            line-height: 1.75;
+            /* mer luft mellom linjene */
+            letter-spacing: 0.2px;
+            /* litt jevnere tekst */
+        }
+
+        .author-bio p {
+            margin-bottom: 1.5rem;
+            /* luft under avsnitt */
+        }
+
+        @media (max-width: 768px) {
+            #introText {
+                position: relative;
+                top: 40px;
+                /* beholder vertikal plassering */
+                left: 50%;
+                /* plasserer midt horisontalt */
+                transform: translateX(-50%);
+                /* korrigerer slik at midten blir perfekt */
+                text-align: center;
+                z-index: 10;
+                width: max-content;
+                /* hindrer at transform påvirker bredden */
+            }
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 0% 0%, #023516 0%, transparent 50%),
+                        radial-gradient(circle at 100% 0%, #034e2a 0%, transparent 50%),
+                        radial-gradient(circle at 0% 100%, #043b01 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, #123a1b 0%, transparent 50%);
+            background-color: #031701;
+            background-size: 200% 200%;
+            animation: gradientMove 25s ease-in-out infinite alternate;
+        }
+
+        /* ekstra blur‑lag over, for mer “dreamy” look */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            background: inherit;
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        /* sakte bevegelse */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="pageLoader" class="loader hidden">
+        <div class="loader-shine"></div>
+
+        <div class="loader-skeleton">
+            <div class="skel title"></div>
+            <div class="skel line"></div>
+            <div class="skel line short"></div>
+
+            <div class="skel big"></div>
+
+            <div class="skel line"></div>
+            <div class="skel line"></div>
+            <div class="skel line short"></div>
+        </div>
+    </div>
+
+    <header>
+        <div class="brand" data-page="page-home">
+            <svg class="brand-mark" fill="none" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" stroke="#b08d57" stroke-width="1.2"></circle>
+                <circle cx="20" cy="20" r="7" stroke="#ececea" stroke-width="1.2"></circle>
+                <line stroke="#b08d57" stroke-width="1.2" x1="20" x2="20" y1="2" y2="10"></line>
+                <line stroke="#b08d57" stroke-width="1.2" x1="20" x2="20" y1="30" y2="38"></line>
+            </svg>
+            <span class="brand-name">ZABAWA W BOGA</span>
+        </div>
+        <button aria-label="Otwórz menu" class="nav-toggle" id="navToggle">☰</button>
+        <nav id="mainNav">
+            <button class="nav-btn active" data-page="page-home">Strona Główna</button>
+            <button class="nav-btn" data-page="page-book">O Książce</button>
+            <button class="nav-btn" data-page="page-author">O Pisarzu</button>
+            <button class="nav-btn" data-page="page-audiobook">Audiobook</button>
+        </nav>
+    </header>
+    <div id="navSpacer" aria-hidden="true"></div>
+    <!-- ============ HOME ============ -->
+    <div class="page active" id="page-home">
+        <div id="hero">
+            <div id="introText">
+                <h1 class="title reveal">ZABAWA W BOGA</h1>
+                <p class="subtitle reveal">Witold Kotula</p>
+                <div id="titleLine"></div>
+            </div>
+        </div>
+        <div id="content">
+            <p class="lede reveal">
+                „Każdy z nas, choć raz w życiu, siada po drugiej stronie stołu i wydaje wyrok,
+                który nie należy do niego."
+            </p>
+            <h2 class="eyebrow reveal">O czym jest ta historia</h2>
+            <p class="reveal">
+                <em>Zabawa w Boga</em> to powieść o granicy, której nikt nie powinien przekraczać —
+                i o tym, co się dzieje, gdy ktoś jednak to robi. Witold Kotula prowadzi czytelnika
+                przez świat, w którym nauka, wiara i ludzka pycha spotykają się na jednej,
+                niebezpiecznej linii.
+            </p>
+            <p class="reveal">
+                To książka o wyborach, których konsekwencji nie da się cofnąć, i o cenie,
+                jaką płaci się za to, by choć na chwilę poczuć się kimś więcej niż człowiekiem.
+            </p>
+            <div class="cards">
+                <div class="card reveal" style="transition-delay:0.00s;">
+                    <svg class="glyph" fill="none" viewbox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke="#b08d57" stroke-width="1.3"></circle>
+                        <path d="M12 7v5l3 3" stroke="#b08d57" stroke-width="1.3"></path>
+                    </svg>
+                    <h3 class="reveal">Wina</h3>
+                    <p class="reveal">Bohaterowie mierzą się z decyzjami, których ciężaru nie da się odłożyć.</p>
+                </div>
+                <div class="card reveal" style="transition-delay:0.12s;">
+                    <svg class="glyph" fill="none" viewbox="0 0 24 24">
+                        <path d="M12 3v18M4 12h16" stroke="#b08d57" stroke-width="1.3"></path>
+                    </svg>
+                    <h3 class="reveal">Stworzenie</h3>
+                    <p class="reveal">Co się dzieje, gdy człowiek próbuje przejąć rolę, która nigdy nie była jego?
+                    </p>
+                </div>
+                <div class="card reveal" style="transition-delay:0.24s;">
+                    <svg class="glyph" fill="none" viewbox="0 0 24 24">
+                        <rect height="16" rx="3" stroke="#b08d57" stroke-width="1.3" width="16" x="4" y="4"></rect>
+                    </svg>
+                    <h3 class="reveal">Granice nauki</h3>
+                    <p class="reveal">Powieść pyta, gdzie kończy się odkrycie, a zaczyna przekroczenie.</p>
+                </div>
+            </div>
+            <div class="cta-banner reveal">
+                <div>
+                    <h3 class="reveal">Posłuchaj fragmentu audiobooka</h3>
+                    <p class="reveal">Kawałek pierwszego rozdziała czytany przez lektora — za darmo, bez zobowiązań.</p>
+                </div>
+                <button class="btn btn-solid reveal" data-page="page-audiobook">Przejdź do audiobooka</button>
+            </div>
+        </div>
+    </div>
+    <!-- ============ O KSIĄŻCE ============ -->
+    <div class="page" id="page-book">
+        <div class="subpage">
+            <p class="eyebrow reveal">Powieść</p>
+            <h1 class="reveal">O Książce</h1>
+            <div class="split reveal">
+                <div class="plate reveal">
+                    <img src="picture.png">
+                </div>
+                <div>
+                    <p class="reveal">
+                        Lisa, hakerka z formacji „Sojusz”, budzi się po stuletniej hibernacji jako jedna z nielicznych
+                        ocalałych po globalnej
+                        katastrofie nuklearnej. Razem z towarzyszami próbuje odtworzyć wydarzenia sprzed ataku i odkryć,
+                        czy świat naprawdę jest
+                        pusty. „Zabawa w Boga” to postapokaliptyczna opowieść o przetrwaniu, nadziei i poszukiwaniu
+                        człowieczeństwa w
+                        rzeczywistości, gdzie granice moralności są bardziej rozmyte niż kiedykolwiek.
+                    </p>
+                    <p class="reveal">
+                        Powieść Witolda Kotuli łączy tempo dobrego thrillera z pytaniami,
+                        które zostają z czytelnikiem na długo po przewróceniu ostatniej strony —
+                        o to, ile jesteśmy w stanie poświęcić, by poczuć się panami własnego losu.
+                    </p>
+                    <table class="meta reveal">
+                        <tr>
+                            <td>Autor</td>
+                            <td>Witold Kotula</td>
+                        </tr>
+                        <tr>
+                            <td>Gatunek</td>
+                            <td>Dystopia, Fantastyka, Polityczna, Postapo</td>
+                        </tr>
+                        <tr>
+                            <td>Liczba stron</td>
+                            <td>~ 325</td>
+                        </tr>
+                        <tr>
+                            <td>Wydawnictwo</td>
+                            <td>— Wydawnictwo Alternatywne —</td>
+                        </tr>
+                        <tr>
+                            <td>Premiera</td>
+                            <td>— 05.05.2026 —</td>
+                        </tr>
+                        <tr>
+                            <td>ISBN</td>
+                            <td>— 9788367260305 —</td>
+                        </tr>
+                    </table>
+                    <a class="btn btn-solid reveal" data-page="page-audiobook" href="#">Odsłuchaj fragment</a>
+                </div>
+            </div>
+            <hr class="hairline" />
+            <h2 class="eyebrow reveal">Fragment</h2>
+            <p class="lede reveal">
+                „Celem ataku były państwa zachodnie – Włochy, Francja, Niemcy, Austria, Polska, Czechy, Słowacja i USA."
+            </p>
+            <hr class="hairline" />
+            <h2 class="eyebrow reveal">Recenzje</h2>
+            <blockquote class="review reveal">
+                <p class="reveal">„Powieść, która nie pozwala spać spokojnie jeszcze długo po lekturze."</p>
+                <cite>— Oskarko2007</cite>
+            </blockquote>
+            <blockquote class="review reveal">
+                <p class="reveal">„Kotula pisze o wielkich pytaniach bez cienia moralizatorstwa."</p>
+                <cite>— Małgorzata76</cite>
+            </blockquote>
+            <blockquote class="review reveal">
+                <p class="reveal">„...Nie tylko trzyma w emocjach, ale też zostawia czytelnika z pytaniami o przyszłość ludzkości i konsekwencje naszych
+                wyborów...”</p>
+                <cite>— glowlion96</cite>
+            </blockquote>
+            <blockquote class="review reveal">
+                <p class="reveal">„Dynamiczna, pełna zwrotów akcji i świeżego spojrzenia na postapo — czyta się ją błyskawicznie i z ogromną
+                przyjemnością.”</p>
+                <cite>— KajetanPuszek</cite>
+            </blockquote>
+
+        </div>
+    </div>
+    <!-- ============ O PISARZU ============ -->
+    <div class="page" id="page-author">
+        <div class="subpage">
+            <p class="eyebrow reveal">Autor</p>
+            <h1 class="reveal">O Pisarzu</h1>
+            <div class="split reveal">
+                <div class="plate portrait reveal">
+                    <img src="wk.png">
+                </div>
+                <div>
+                    <p class="reveal">
+                        Witold Kotula jest pisarzem zajmującym się prozą, w której nauka spotyka
+                        się z pytaniami egzystencjalnymi. W swojej twórczości wielokrotnie wraca
+                        do tematu granic — moralnych, naukowych i religijnych — jakie ludzie
+                        gotowi są przekroczyć w imię własnych przekonań.
+                    </p>
+                    <p class="reveal">
+                        Zanim usiadł do pisania <em>Zabawy w Boga</em>, spędził lata zbierając
+                        historie i rozmawiając z ludźmi, dla których pytanie „jak daleko można
+                        się posunąć" nie było wyłącznie literacką figurą. — uzupełnij realną
+                        biografię autora w tym miejscu.
+                    </p>
+                </div>
+            </div>
+            <hr class="hairline" />
+            <h2 class="eyebrow reveal">Twórczość</h2>
+
+            <div class="author-bio reveal">
+                <p>
+                    Te doświadczenia, obserwacje i rozmowy stały się jednym ze źródeł inspiracji dla świata
+                    przedstawionego w powieści oraz
+                    dla bohaterów zmuszonych do podejmowania decyzji, w których granica między dobrem a złem przestaje
+                    być oczywista.
+                    <br><br>
+                    Kotula chętnie wplata w swoje historie wątki fantastyczne, które na pierwszy rzut oka mogą wydawać
+                    się całkowicie
+                    nierealne. Jednocześnie pozostawia czytelnikowi myśl, że granica między fantastyką a rzeczywistością
+                    bywa znacznie mniej
+                    trwała, niż nam się wydaje. To, co dzisiaj uznajemy za niemożliwe, jutro może stać się częścią
+                    codzienności. Historia
+                    nauki wielokrotnie pokazywała przecież, że idee przypominające niegdyś literacką fantazję z czasem
+                    materializowały się
+                    dzięki kolejnym odkryciom, rozwojowi technologii i coraz głębszemu poznawaniu świata.
+                    <br><br>
+                    W tym sensie w jego pisaniu można odnaleźć echo sposobu myślenia znanego z twórczości Stanisława
+                    Lema – nie poprzez
+                    naśladowanie jego literatury, lecz poprzez przekonanie, że fantastyka może wyprzedzać rzeczywistość
+                    i stawiać pytania,
+                    na które nauka dopiero kiedyś spróbuje odpowiedzieć. Kotulę fascynują również nieznane dotąd
+                    zakamarki historii,
+                    zapomniane fakty i odkrycia, które potrafią zmienić nasze wyobrażenie o tym, co uważaliśmy za pewne.
+                    <br><br>
+                    Kotula nie próbuje dawać prostych odpowiedzi. Zamiast tego stawia pytania o odpowiedzialność,
+                    moralność, cenę
+                    przetrwania i o to, co pozostaje z człowieczeństwa, kiedy znane nam zasady przestają obowiązywać.
+                    <br> <br>
+                    W jego pisaniu fantastyka jest przede wszystkim narzędziem do opowiadania o ludziach – ich lękach,
+                    nadziei, słabościach
+                    i wyborach podejmowanych wtedy, gdy stawką staje się coś więcej niż własne życie.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- ============ AUDIOBOOK (SALES PAGE) ============ -->
+    <div class="page" id="page-audiobook">
+        <div class="subpage">
+            <p class="eyebrow reveal">Audiobook</p>
+            <h1 class="reveal">Posłuchaj „Zabawy w Boga"</h1>
+            <div class="sales-hero reveal">
+                <div class="plate reveal">
+                    <img src="picture.png" class="cover">
+                </div>
+                <div>
+                    <p class="reveal">
+                        Pełna wersja audio powieści Witolda Kotuli, czytana przez
+                        lektora. Około 11 godzin nagrania, które można zabrać ze sobą wszędzie —
+                        w drodze do pracy, na spacerze albo wieczorem, zamiast telewizora.
+                    </p>
+                    <div class="sample-player reveal">
+                        <div class="label">Darmowy fragment pierwszego rozdziału</div>
+                        <!-- TODO: podmień src na właściwy plik z fragmentem audiobooka -->
+                        <audio controls controlsList="nodownload">
+                            <source src="audiobook_fragment.mp3" type="audio/mpeg">
+                        </audio>
+
+                    </div>
+                    <div class="price-tag reveal">41,49 zł</div>
+                    <p class="price-note reveal">Jednorazowy zakup — dostęp bezterminowy, plik do pobrania.</p>
+                    <!-- TODO: podmień href na właściwy link do sklepu / bramki płatności -->
+                    <a class="btn btn-solid reveal"
+                        href="https://www.empik.com/zabawa-w-boga-kotula-witold,p1774218705,ebooki-i-mp3-p">Kup
+                        audiobook</a>
+                    <ul class="include-list reveal">
+                        <li>Pełne nagranie — ok. 11 godzin</li>
+                        <li>Format MP3, do pobrania na dowolne urządzenie</li>
+                        <li>Czytane przez lektora</li>
+                        <li>Możliwość odsłuchu offline</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="hairline" />
+            <h2 class="eyebrow reveal">Najczęściej zadawane pytania</h2>
+            <details class="faq reveal">
+                <summary>Jak otrzymam audiobook po zakupie?</summary>
+                <p class="reveal">Po zakończeniu płatności otrzymasz e-mail z linkiem do pobrania pliku — uzupełnij
+                    tu
+                    realny proces dostawy.</p>
+            </details>
+            <details class="faq reveal">
+                <summary>W jakim formacie jest nagranie?</summary>
+                <p class="reveal">Audiobook dostarczany jest w formacie MP3, kompatybilnym z większością odtwarzaczy
+                    i
+                    aplikacji.</p>
+            </details>
+            <details class="faq reveal">
+                <summary>Czy mogę odsłuchać fragment przed zakupem?</summary>
+                <p class="reveal">Tak — kawałek pierwszego rozdziała możesz odsłuchać bezpłatnie powyżej, zanim
+                    zdecydujesz się
+                    na
+                    zakup.</p>
+            </details>
+        </div>
+    </div>
+    <footer class="site-footer reveal">
+        © <span id="year"></span> Witold Kotula — Zabawa w Boga
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script>
+
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+
+        window.onload = function () {
+            window.scrollTo(0, 0);
+        };
+
+        const hero = document.getElementById("hero");
+        const homePage = document.getElementById("page-home");
+
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(
+            60,
+            hero.clientWidth / Math.max(hero.clientHeight, 1),
+            0.1,
+            1000
+        );
+        camera.position.set(0, 0, 3);
+
+        let renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance"
+        });
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = .6;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setClearColor(0x000000, 0);
+        renderer.setSize(hero.clientWidth, hero.clientHeight, false);
+        hero.appendChild(renderer.domElement);
+
+        // --- LIGHTING ---
+        let ambient = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(ambient);
+
+        let directional = new THREE.DirectionalLight(0xffffff, 1);
+        directional.position.set(3, 5, 4);
+        scene.add(directional);
+
+        let hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
+        scene.add(hemi);
+
+        let book;
+        let modelLoadFailed = false;
+
+        function isMobileViewport() {
+            return window.matchMedia("(max-width: 720px)").matches;
+        }
+
+        function applyBookScale() {
+            if (!book) return;
+
+            // Keep the desktop model exactly as before; use a smaller,
+            // more comfortable framing on narrow screens.
+            const scale = isMobileViewport() ? 1.45 : 2;
+            book.scale.set(scale, scale, scale);
+        }
+
+        // --- LOAD MODEL ---
+        const loader = new THREE.GLTFLoader();
+
+        loader.load(
+            "final_book.glb",
+            function (gltf) {
+                book = gltf.scene;
+                applyBookScale();
+                scene.add(book);
+
+                // Default desktop
+                book.rotation.set(1.5, 0, 0.2);
+                book.position.set(100, 0, 0.6);
+
+                // Mobile adjustments
+                if (window.innerWidth < 768) {
+                    book.position.set(0, 0.3, 0.8);
+                    book.rotation.set(1.4, 0, 0);
+                }
+            },
+            undefined,
+            function (error) {
+                modelLoadFailed = true;
+                animationDone = true;
+                document.body.style.overflow = "auto";
+                console.error("Nie udało się załadować final_book.glb.", error);
+            }
+        );
+
+
+        // --- SCROLL CONTROL ---
+        let scrollProgress = 0;
+        let targetScroll = 0;
+        let scrollSpeed = 0.00035;
+        let animationDone = false;
+
+        // Disable real scrolling initially
+        document.body.style.overflow = "hidden";
+
+        // Fake scroll listener
+        window.addEventListener("wheel", (e) => {
+
+            // Only run this on the home page
+            if (!document.getElementById("page-home").classList.contains("active")) {
+                return;
+            }
+
+            // Once the user is below the hero, NEVER interfere with native scrolling
+            if (window.scrollY > 5) {
+                return;
+            }
+
+            // ---------------------------------------------------------
+            // BOOK ANIMATION
+            // ---------------------------------------------------------
+            if (!animationDone) {
+
+                e.preventDefault();
+
+                const previousTarget = targetScroll;
+
+                targetScroll += e.deltaY * scrollSpeed;
+                targetScroll = Math.max(0, Math.min(1, targetScroll));
+
+                // If this wheel event finishes the book animation,
+                // immediately unlock native scrolling.
+                if (targetScroll >= 1) {
+                    targetScroll = 1;
+                    animationDone = true;
+                    document.body.style.overflow = "auto";
+
+                    // Transfer the remaining wheel movement to the page.
+                    // This prevents touchpad momentum from feeling like
+                    // it suddenly hits a wall.
+                    const consumed = (1 - previousTarget) / scrollSpeed;
+                    const remainingDelta = e.deltaY - consumed;
+
+                    if (remainingDelta > 0) {
+                        window.scrollBy(0, remainingDelta);
+                    }
+                }
+
+                return;
+            }
+
+            // ---------------------------------------------------------
+            // REVERSE BOOK ANIMATION WHEN SCROLLING BACK TO THE TOP
+            // ---------------------------------------------------------
+            if (animationDone && e.deltaY < 0 && window.scrollY <= 5) {
+
+                e.preventDefault();
+
+                document.body.style.overflow = "hidden";
+                animationDone = false;
+
+                targetScroll += e.deltaY * scrollSpeed;
+                targetScroll = Math.max(0, Math.min(1, targetScroll));
+
+                return;
+            }
+
+            // Positive wheel movement after the animation is finished
+            // is deliberately NOT intercepted.
+            // The browser handles native touchpad/mouse momentum.
+        }, { passive: false });
+
+        // Mobile: map vertical swipes to the exact same 0 → 1 animation.
+        // Native page scrolling is allowed again as soon as the animation
+        // finishes, so all other pages remain normally scrollable.
+        hero.addEventListener("touchstart", (e) => {
+            if (!isHomeAtTop()) return;
+
+            if (e.touches.length !== 1) {
+                touchActive = false;
+                return;
+            }
+
+            touchStartY = e.touches[0].clientY;
+            lastTouchY = touchStartY;
+            touchActive = true;
+        }, { passive: true });
+
+        hero.addEventListener("touchmove", (e) => {
+            if (!touchActive || !isHomeAtTop() || e.touches.length !== 1) return;
+
+            const currentY = e.touches[0].clientY;
+            const deltaY = lastTouchY - currentY;
+            lastTouchY = currentY;
+
+            if (Math.abs(deltaY) < 0.01) return;
+
+            // Finger moving upward = positive animation progress.
+            if (!animationDone) {
+                e.preventDefault();
+                addToTargetScroll(deltaY * touchScrollSpeed);
+                return;
+            }
+
+            // Once complete, only a downward swipe at the very top should
+            // reverse the hero animation. Upward swipes are normal scrolling.
+            if (animationDone && deltaY < 0) {
+                e.preventDefault();
+                animationDone = false;
+                setAnimationScrollLock(true);
+                addToTargetScroll(deltaY * touchScrollSpeed);
+            }
+        }, { passive: false });
+
+        hero.addEventListener("touchend", () => {
+            touchActive = false;
+        }, { passive: true });
+
+        hero.addEventListener("touchcancel", () => {
+            touchActive = false;
+        }, { passive: true });
+
+
+        // --- EASING FUNCTION (Apple-style smoothness) ---
+        function easeOutExpo(t) {
+            return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+        }
+
+        // --- INTERPOLATION ---
+        function lerp(a, b, t) {
+            return a + (b - a) * t;
+        }
+
+        function updateBookAnimation() {
+            if (!book) return;
+
+            // Smooth scroll interpolation (momentum)
+            scrollProgress = lerp(scrollProgress, targetScroll, 0.08);
+
+            // Unlock scroll when animation finishes.
+            if (!animationDone && scrollProgress >= 0.85) {
+                animationDone = true;
+                setAnimationScrollLock(false);
+            }
+
+            // Apply easing curve
+            let eased = easeOutExpo(scrollProgress);
+            let linear = scrollProgress;
+
+            // Phase split
+            let t1 = Math.min(linear * 2, 1);
+            let t2 = Math.max((linear - 0.5) * 2, 0);
+
+            // TEXT FADE OUT
+            let textFade = 1 - (linear * 3);
+            textFade = Math.max(0, Math.min(1, textFade));
+
+            // LINE ANIMATION
+            let line = document.getElementById("titleLine");
+
+            if (linear < 0.25) {
+                line.style.width = (linear * 400) + "%";
+            } else if (linear < 0.35) {
+                line.style.width = "100%";
+            } else {
+                // Fixed typo from the original: subtract the actual phase
+                // start instead of 4, which made the line stay at full size.
+                let shrink = 1 - ((linear - 0.4) * 2.5);
+                shrink = Math.max(0, shrink);
+                line.style.width = (shrink * 100) + "%";
+            }
+
+            line.style.opacity = textFade;
+            document.getElementById("introText").style.opacity = textFade;
+
+            // ROTATION
+            book.rotation.x = 1.5;
+            book.rotation.y = 0;
+            book.rotation.z = lerp(0.2, 3.1, t1);
+
+            // Responsive movement:
+            // desktop keeps the original coordinates; mobile uses a
+            // narrower x/y range so the book stays comfortably in frame.
+            const mobile = isMobileViewport();
+
+            let pos1 = {
+                x: lerp(-0.6, mobile ? 0.32 : 0.8, t1),
+                y: lerp(0, mobile ? -0.65 : -1, t1),
+                z: lerp(.5, mobile ? 1.25 : 1.5, t1)
+            };
+
+            let pos2 = {
+                x: mobile ? 0.32 : 0.8,
+                y: lerp(mobile ? -0.65 : -1, mobile ? 1.25 : 1.8, t2),
+                z: mobile ? 1.25 : 1.5
+            };
+
+            if (linear < 0.5) {
+                book.position.set(pos1.x, pos1.y, pos1.z);
+            } else {
+                book.position.set(pos2.x, pos2.y, pos2.z);
+            }
+        }
+
+        // --- ANIMATION LOOP ---
+        function animate() {
+            requestAnimationFrame(animate);
+            updateBookAnimation();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- RESIZE HANDLING ---
+        function resizeThreeToHero() {
+            const width = Math.max(hero.clientWidth, 1);
+            const height = Math.max(hero.clientHeight, 1);
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setSize(width, height, false);
+
+            applyBookScale();
+        }
+
+        window.addEventListener("resize", resizeThreeToHero, { passive: true });
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener("resize", resizeThreeToHero, { passive: true });
+        }
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- NEW: page navigation. Fully separate from the script above.   -->
+    <!-- Does not read or modify any book/scroll variable or function. -->
+    <!-- ============================================================ -->
+    <script>
+
+        const pageLoader = document.getElementById("pageLoader");
+
+        // Loader is hidden by default.
+        // It must NEVER be able to block the website permanently.
+        pageLoader.classList.add("hidden");
+        pageLoader.style.opacity = "0";
+        pageLoader.style.pointerEvents = "none";
+        pageLoader.style.visibility = "hidden";
+
+        // Show loader
+        function showLoader() {
+            pageLoader.classList.remove("hidden");
+            pageLoader.style.display = "flex";
+            pageLoader.style.opacity = "1";
+            pageLoader.style.pointerEvents = "auto";
+            pageLoader.style.visibility = "visible";
+        }
+
+        // Hide loader
+        function hideLoader() {
+            pageLoader.classList.add("hidden");
+            pageLoader.style.opacity = "0";
+            pageLoader.style.pointerEvents = "none";
+            pageLoader.style.visibility = "hidden";
+
+            // Completely remove it from the page after the fade.
+            setTimeout(() => {
+                pageLoader.style.display = "none";
+            }, 400);
+        }
+
+        // Absolute emergency fallback.
+        // Even if another part of the JavaScript crashes,
+        // the loader can NEVER remain forever.
+        setTimeout(() => {
+            hideLoader();
+        }, 2000);
+        function resetHomeAnimation() {
+            // reset scroll state
+            scrollProgress = 0;
+            targetScroll = 0;
+            animationDone = modelLoadFailed;
+
+            // Only lock the page if the hero animation can actually run.
+            setAnimationScrollLock(!animationDone);
+
+            // reset DOM UI
+            const intro = document.getElementById("introText");
+            const line = document.getElementById("titleLine");
+
+            intro.style.opacity = 1;
+            line.style.width = "0%";
+            line.style.opacity = 1;
+
+            // reset book if loaded
+            if (book) {
+                applyBookScale();
+                book.rotation.set(1.5, 0, 0.2);
+                book.position.set(0, 0, 0.6);
+            }
+        }
+
+        (function () {
+            var navButtons = document.querySelectorAll("[data-page]");
+            var pages = document.querySelectorAll(".page");
+            var navToggle = document.getElementById("navToggle");
+            var mainNav = document.getElementById("mainNav");
+            var navSpacer = document.getElementById("navSpacer");
+
+            // Height the dropdown occupies on screen (its fixed "top"
+            // offset + its own content height). Pushing #navSpacer to
+            // this height moves the page content down by exactly the
+            // amount the dropdown covers, so nothing gets hidden or
+            // cropped behind it.
+            function measureNavPushHeight() {
+                var topOffset = parseFloat(getComputedStyle(mainNav).top) || 0;
+                return topOffset + mainNav.scrollHeight;
+            }
+
+            function openNav() {
+                mainNav.classList.add("open");
+                navToggle.classList.add("open");
+                navToggle.setAttribute("aria-expanded", "true");
+                navSpacer.style.height = measureNavPushHeight() + "px";
+            }
+
+            function closeNav() {
+                mainNav.classList.remove("open");
+                navToggle.classList.remove("open");
+                navToggle.setAttribute("aria-expanded", "false");
+                navSpacer.style.height = "0px";
+            }
+
+            // Keep the pushed-down space accurate if the dropdown is
+            // open while the viewport is resized/rotated.
+            window.addEventListener("resize", function () {
+                if (mainNav.classList.contains("open")) {
+                    navSpacer.style.height = measureNavPushHeight() + "px";
+                }
+            });
+
+            function showPage(pageId) {
+
+                let loaderKey = "loader_seen_" + pageId;
+                let useLoader = !sessionStorage.getItem(loaderKey);
+
+                if (useLoader) {
+                    showLoader();
+                    sessionStorage.setItem(loaderKey, "true");
+                }
+
+                const delay = useLoader ? (700 + Math.random() * 700) : 0;
+
+                // hide content immediately (important)
+                document.querySelectorAll(".page").forEach(p => {
+                    p.style.visibility = "hidden";
+                });
+
+                // Never allow the loader to remain indefinitely.
+                const loaderFailsafe = setTimeout(() => {
+                    hideLoader();
+                }, 2000);
+
+                setTimeout(() => {
+
+                    pages.forEach(function (p) {
+                        p.classList.toggle("active", p.id === pageId);
+                        p.style.visibility = "visible";
+                    });
+
+                    document.querySelectorAll(".nav-btn").forEach(function (b) {
+                        b.classList.toggle("active", b.dataset.page === pageId);
+                    });
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "instant"
+                    });
+
+                    if (pageId === "page-home") {
+                        resetHomeAnimation();
+                    } else {
+                        setAnimationScrollLock(false);
+                        touchActive = false;
+                    }
+
+                    resetRevealAnimations();
+
+                    closeNav();
+
+                    hideLoader();
+
+                }, delay);
+
+            }
+
+            navButtons.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+
+                    // Lukk mobilmenyen med CSS-animasjonen
+                    closeNav();
+
+                    // Bytt side
+                    showPage(btn.dataset.page);
+                });
+            });
+
+            navToggle.addEventListener("click", function () {
+                if (mainNav.classList.contains("open")) {
+                    closeNav();
+                } else {
+                    openNav();
+                }
+            });
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            // Audio is optional content; a missing MP3 must not break navigation.
+            document.querySelectorAll("audio").forEach(audio => {
+                audio.addEventListener("error", () => {
+                    console.error(
+                        "Nie udało się załadować pliku audio:",
+                        audio.currentSrc || audio.querySelector("source")?.src
+                    );
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target); // animate only once
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll(".reveal").forEach(el => {
+            observer.observe(el);
+        });
+
+        function resetRevealAnimations() {
+            const elements = document.querySelectorAll(".reveal");
+
+            elements.forEach(el => {
+                el.classList.remove("visible");
+
+                // force reflow (critical)
+                void el.offsetHeight;
+
+                observer.observe(el);
+            });
+        }
+
+        // FINAL LOADER SAFETY NET
+        window.addEventListener("load", function () {
+            hideLoader();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                hideLoader();
+            }, 1500);
+        });
+    </script>
+
+</body>
+
+</html>
